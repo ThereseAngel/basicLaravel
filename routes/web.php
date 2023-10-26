@@ -34,6 +34,19 @@ Route::get('/contact', [ContactController::class, 'index'])->name('angel');
 
 Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
 
+Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
+
+Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
+
+Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
+
+Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
+
+Route::get('/category/softdelete/{id}', [CategoryController::class, 'SoftDelete']);
+
+Route::get('/category/delete/{id}', [CategoryController::class, 'Delete']);
+
+
 
 Route::middleware([
     'auth:sanctum',
@@ -41,7 +54,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        $users = User::all();
-        return view('dashboard', compact('users'));
+        // $users = User::all();
+        return view('admin.index');
     })->name('dashboard');
 });
